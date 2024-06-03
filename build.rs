@@ -75,6 +75,7 @@ fn write_enum(file: &mut BufWriter<File>, data: &[IsoData]) {
         })
         .collect();
     let outline = quote! {
+        #[cfg_attr(feature = "poem-openapi", derive(poem_openapi::Enum))]
         #[cfg_attr(feature = "with-serde", derive(Serialize, Deserialize))]
         #[cfg_attr(feature = "iterator", derive(EnumIter))]
         #[cfg_attr(feature = "with-schemars", derive(JsonSchema))]
